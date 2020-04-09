@@ -37,14 +37,16 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3),
   },
   withoutLabel: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(0),
   },
   textField: {
     width: "25ch",
+    height: "7ch",
   },
   root: {
     display: "flex",
     flexWrap: "wrap",
+    justifyContent: "center",
     "& > *": {
       margin: theme.spacing(8),
       width: theme.spacing(60),
@@ -53,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Login() {
+function SignUp() {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     username: "",
@@ -72,16 +74,15 @@ function Login() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
   return (
     <div className={classes.root}>
       <Grid container>
         <Paper elevation={3}>
           <Grid item xs={12} className={classes.withoutLabel}>
-            Log in and tell us what you watched
+            Create your SerialWatcher account
             <FormHelperText id="my-helper-text">
-              I am not a Serial Watcher yet..
-              <Link to="/signup">Sign me Up!</Link>
+              I am already a Serial Watcher..
+              <Link to="/login">Log me In!</Link>
             </FormHelperText>
           </Grid>
           <Grid item xs={6} className={classes.withoutLabel}>
@@ -90,7 +91,55 @@ function Login() {
                 className={clsx(classes.margin, classes.textField)}
                 variant="outlined"
               >
-                <InputLabel htmlFor="outlined-username">Username</InputLabel>
+                <InputLabel htmlFor="outlined-firstname">First name</InputLabel>
+                <OutlinedInput
+                  id="outlined-firstname"
+                  type="text"
+                  value={values.firstname}
+                  onChange={handleChange("firstname")}
+                  labelWidth={100}
+                />
+                <FormHelperText id="my-helper-text">
+                  *Required field{" "}
+                </FormHelperText>
+              </FormControl>
+              <FormControl
+                className={clsx(classes.margin, classes.textField)}
+                variant="outlined"
+              >
+                <InputLabel htmlFor="outlined-lastname">Last name</InputLabel>
+                <OutlinedInput
+                  id="outlined-lastname"
+                  type="text"
+                  value={values.lastname}
+                  onChange={handleChange("lastname")}
+                  labelWidth={100}
+                />
+                <FormHelperText id="my-helper-text">
+                  *Required field{" "}
+                </FormHelperText>
+              </FormControl>
+              <FormControl
+                className={clsx(classes.margin, classes.textField)}
+                variant="outlined"
+              >
+                <InputLabel htmlFor="outlined-email">E-mail</InputLabel>
+                <OutlinedInput
+                  id="outlined-email"
+                  type="text"
+                  value={values.email}
+                  onChange={handleChange("email")}
+                  labelWidth={100}
+                />
+                <FormHelperText id="my-helper-text">
+                  *Required field{" "}
+                </FormHelperText>
+              </FormControl>
+              <FormControl
+                className={clsx(classes.margin, classes.textField)}
+                variant="outlined"
+              >
+                <InputLabel htmlFor="outlined-username">Watchername</InputLabel>
                 <OutlinedInput
                   id="outlined-username"
                   type="text"
@@ -98,6 +147,9 @@ function Login() {
                   onChange={handleChange("username")}
                   labelWidth={100}
                 />
+                <FormHelperText id="my-helper-text">
+                  *Required field{" "}
+                </FormHelperText>
               </FormControl>
               <FormControl
                 className={clsx(classes.margin, classes.textField)}
@@ -140,8 +192,9 @@ function Login() {
             <ColorButton
               variant="contained"
               className={clsx(classes.margin, classes.textField)}
+              size="large"
             >
-              Take me in!
+              Done
             </ColorButton>
           </Grid>
         </Paper>
@@ -150,4 +203,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default SignUp;

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 class App extends Component {
   render() {
@@ -10,6 +11,9 @@ class App extends Component {
       <div>
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={SignUp} />
+
+
       </div>
     );
   }
