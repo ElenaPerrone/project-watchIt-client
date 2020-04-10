@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
@@ -58,15 +59,46 @@ const useStyles = makeStyles((theme) => ({
 function SignUp() {
   const classes = useStyles();
   const [values, setValues] = React.useState({
+    firstName: "",
+    lastName: "",
+    email: "",
     username: "",
     password: "",
     showPassword: false,
   });
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log("submitted", values);
+    let user = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: values.email,
+      username: values.username,
+      password: values.password,
+      // favourites: {
+      // items: [{ showId: {type: Schema.Types.ObjectId}, required: true}]
+      // }
+    };
+    handleRequest(user);
+  }
+  // handles the format of the axios req
+  const handleRequest = (user) => {
+    axios({
+      method: "POST",
+      url: "http://localhost:3000/user/add",
+      data: user,
+    }).then((response) => {
+      console.log("SignUp -> response", response);
+    });
+  };
+  //handles changes in the input values onChange
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
+  // <--- end--->
 
+  // <--- handles password visibility icon --->
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
@@ -74,6 +106,8 @@ function SignUp() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  // <--- end--->
   return (
     <div className={classes.root}>
       <Grid container>
@@ -95,8 +129,8 @@ function SignUp() {
                 <OutlinedInput
                   id="outlined-firstname"
                   type="text"
-                  value={values.firstname}
-                  onChange={handleChange("firstname")}
+                  value={values.firstName || ""}
+                  onChange={handleChange("firstName")}
                   labelWidth={100}
                 />
                 <FormHelperText id="my-helper-text">
@@ -111,8 +145,8 @@ function SignUp() {
                 <OutlinedInput
                   id="outlined-lastname"
                   type="text"
-                  value={values.lastname}
-                  onChange={handleChange("lastname")}
+                  value={values.lastName || ""}
+                  onChange={handleChange("lastName")}
                   labelWidth={100}
                 />
                 <FormHelperText id="my-helper-text">
@@ -126,8 +160,8 @@ function SignUp() {
                 <InputLabel htmlFor="outlined-email">E-mail</InputLabel>
                 <OutlinedInput
                   id="outlined-email"
-                  type="text"
-                  value={values.email}
+                  type="email"
+                  value={values.email || ""}
                   onChange={handleChange("email")}
                   labelWidth={100}
                 />
@@ -143,7 +177,7 @@ function SignUp() {
                 <OutlinedInput
                   id="outlined-username"
                   type="text"
-                  value={values.username}
+                  value={values.username || ""}
                   onChange={handleChange("username")}
                   labelWidth={100}
                 />
@@ -162,7 +196,7 @@ function SignUp() {
                   aria-describedby="my-helper-text"
                   id="outlined-adornment-password"
                   type={values.showPassword ? "text" : "password"}
-                  value={values.password}
+                  value={values.password || ""}
                   onChange={handleChange("password")}
                   endAdornment={
                     <InputAdornment position="end">
@@ -189,13 +223,19 @@ function SignUp() {
             </div>
           </Grid>
           <Grid item xs={6}>
-            <ColorButton
-              variant="contained"
-              className={clsx(classes.margin, classes.textField)}
-              size="large"
-            >
-              Done
-            </ColorButton>
+            <Link to="/profile">
+              <ColorButton
+                // component={Link}
+                // to="/profile"
+                onClick={handleSubmit}
+                type="submit"
+                variant="contained"
+                className={clsx(classes.margin, classes.textField)}
+                size="large"
+              >
+                Done
+              </ColorButton>
+            </Link>
           </Grid>
         </Paper>
       </Grid>

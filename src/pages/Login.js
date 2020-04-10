@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import red from "@material-ui/core/colors/red";
+import {red, grey} from "@material-ui/core/colors";
 import {
   FormControl,
   FormHelperText,
@@ -38,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
   },
   withoutLabel: {
     marginTop: theme.spacing(2),
+  },
+  Paper: {
+    color: theme.palette.getContrastText(grey[50]),
+    backgroundColor: grey[50],
   },
   textField: {
     width: "25ch",
@@ -76,7 +80,7 @@ function Login() {
   return (
     <div className={classes.root}>
       <Grid container>
-        <Paper elevation={3}>
+        <Paper elevation={3} className={classes.Paper}>
           <Grid item xs={12} className={classes.withoutLabel}>
             Log in and tell us what you watched
             <FormHelperText id="my-helper-text">
