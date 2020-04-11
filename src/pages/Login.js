@@ -1,8 +1,9 @@
 import React from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import {red, grey} from "@material-ui/core/colors";
+import { red, grey } from "@material-ui/core/colors";
 import {
   FormControl,
   FormHelperText,
@@ -64,6 +65,28 @@ function Login() {
     password: "",
     showPassword: false,
   });
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log("submitted", values);
+    let user = {
+      username: values.username,
+      password: values.password,
+    };
+    handleRequest(user);
+  }
+
+  // handles the format of the axios req
+
+  const handleRequest = (user) => {
+    axios({
+      method: "GET",
+      url: "http://localhost:3000/user/login",
+      data: user,
+    }).then((response) => {
+      console.log("SignUp -> response", response);
+    });
+  };
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -142,8 +165,11 @@ function Login() {
           </Grid>
           <Grid item xs={6}>
             <ColorButton
+              onClick={handleSubmit}
+              type="submit"
               variant="contained"
               className={clsx(classes.margin, classes.textField)}
+              size="large"
             >
               Take me in!
             </ColorButton>

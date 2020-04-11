@@ -82,7 +82,9 @@ function SignUp() {
     };
     handleRequest(user);
   }
+
   // handles the format of the axios req
+  
   const handleRequest = (user) => {
     axios({
       method: "POST",
