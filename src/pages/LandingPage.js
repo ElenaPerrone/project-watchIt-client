@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import red from "@material-ui/core/colors/red";
 import { withStyles } from "@material-ui/core/styles";
+import "./LandingPage.css";
 
 const ColorButton = withStyles((theme) => ({
   root: {
@@ -17,7 +18,7 @@ const ColorButton = withStyles((theme) => ({
 
 function LandingPage() {
   return (
-    <Grid container>
+    <Grid container className="bck">
       <Grid item xs={12}>
         <h2> Welcome to Serial Watcher!</h2>
         <p>This is the place where you can track your shows and episodes</p>

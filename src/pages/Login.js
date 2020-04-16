@@ -58,40 +58,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Login() {
+function Login(props) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
-    username: "",
+    email: "",
     password: "",
     showPassword: false,
   });
 
   function handleSubmit(event) {
-    event.preventDefault();
-    console.log("submitted", values);
+    // event.preventDefault();
+    console.log("submitted user");
     let user = {
-      username: values.username,
+      email: values.email,
       password: values.password,
     };
-    handleRequest(user);
+    props.onLogin(user)
   }
 
   // handles the format of the axios req
 
-  const handleRequest = (user) => {
-    axios({
-      method: "GET",
-      url: "http://localhost:3000/user/login",
-      data: user,
-    }).then((response) => {
-      console.log("SignUp -> response", response);
-    });
-  };
-
+ 
+  //handles changes in the input values onChange
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
+  // <--- end--->
 
+  // <--- handles password visibility icon --->
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
@@ -99,6 +93,7 @@ function Login() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+  // <--- end--->
 
   return (
     <div className={classes.root}>
@@ -108,72 +103,68 @@ function Login() {
             Log in and tell us what you watched
             <FormHelperText id="my-helper-text">
               I am not a Serial Watcher yet..
-              <Link to="/signup">Sign me Up!</Link>
+              <Link to="/signup" style={{ textDecoration: "none" }}>Sign me Up!</Link>
             </FormHelperText>
           </Grid>
           <Grid item xs={6} className={classes.withoutLabel}>
-            <div className="form">
-              <FormControl
-                className={clsx(classes.margin, classes.textField)}
-                variant="outlined"
-              >
-                <InputLabel htmlFor="outlined-username">Username</InputLabel>
-                <OutlinedInput
-                  id="outlined-username"
-                  type="text"
-                  value={values.username}
-                  onChange={handleChange("username")}
-                  labelWidth={100}
-                />
-              </FormControl>
-              <FormControl
-                className={clsx(classes.margin, classes.textField)}
-                variant="outlined"
-              >
-                <InputLabel htmlFor="outlined-adornment-password">
-                  Password
-                </InputLabel>
-                <OutlinedInput
-                  aria-describedby="my-helper-text"
-                  id="outlined-adornment-password"
-                  type={values.showPassword ? "text" : "password"}
-                  value={values.password}
-                  onChange={handleChange("password")}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {values.showPassword ? (
-                          <Visibility />
-                        ) : (
-                          <VisibilityOff />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  labelWidth={100}
-                />
-                <FormHelperText id="my-helper-text">
-                  Password must be at least 5 characters.
-                </FormHelperText>
-              </FormControl>
-            </div>
-          </Grid>
-          <Grid item xs={6}>
-            <ColorButton
-              onClick={handleSubmit}
-              type="submit"
-              variant="contained"
+            <FormControl
               className={clsx(classes.margin, classes.textField)}
-              size="large"
+              variant="outlined"
             >
-              Take me in!
-            </ColorButton>
+              <InputLabel htmlFor="outlined-email">Email</InputLabel>
+              <OutlinedInput
+                id="outlined-email"
+                type="text"
+                value={values.email || ""}
+                onChange={handleChange("email")}
+                labelWidth={100}
+              />
+            </FormControl>
+            <FormControl
+              className={clsx(classes.margin, classes.textField)}
+              variant="outlined"
+            >
+              <InputLabel htmlFor="outlined-adornment-password">
+                Password
+              </InputLabel>
+              <OutlinedInput
+                aria-describedby="my-helper-text"
+                id="outlined-adornment-password"
+                type={values.showPassword ? "text" : "password"}
+                value={values.password || ""}
+                onChange={handleChange("password")}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                labelWidth={100}
+              />
+              <FormHelperText id="my-helper-text">
+                Password must be at least 5 characters.
+              </FormHelperText>
+            </FormControl>
           </Grid>
+          <Link to="/profile" style={{ textDecoration: "none" }}>
+            <Grid item xs={6}>
+              <ColorButton
+                onClick={e => handleSubmit(e)}
+                type="submit"
+                variant="contained"
+                className={clsx(classes.margin, classes.textField)}
+                size="large"
+              >
+                Take me in!
+              </ColorButton>
+            </Grid>
+          </Link>
         </Paper>
       </Grid>
     </div>
