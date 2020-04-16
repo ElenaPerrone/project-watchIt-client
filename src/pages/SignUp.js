@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import red from "@material-ui/core/colors/red";
 import {
   FormControl,
   FormHelperText,
@@ -20,10 +19,10 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 const ColorButton = withStyles((theme) => ({
   root: {
-    color: theme.palette.getContrastText(red[700]),
-    backgroundColor: red[700],
+    color: theme.palette.getContrastText("#aa0909"),
+    backgroundColor: "#aa0909",
     "&:hover": {
-      backgroundColor: red[700],
+      backgroundColor: "red",
     },
   },
 }))(Button);
@@ -38,20 +37,23 @@ const useStyles = makeStyles((theme) => ({
   },
   withoutLabel: {
     marginTop: theme.spacing(0),
+    fontWeight: "bold"
   },
   textField: {
     width: "25ch",
-    height: "7ch",
   },
   root: {
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
     "& > *": {
-      margin: theme.spacing(8),
+      margin: theme.spacing(2),
       width: theme.spacing(60),
       height: theme.spacing(40),
     },
+    backgroundColor: "#212121",
+    height: "92.5vh" //hacky way to style 
+
   },
 }));
 

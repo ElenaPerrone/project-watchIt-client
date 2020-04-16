@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import { red, grey } from "@material-ui/core/colors";
+import { grey } from "@material-ui/core/colors";
 import {
   FormControl,
   FormHelperText,
@@ -21,10 +21,10 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 const ColorButton = withStyles((theme) => ({
   root: {
-    color: theme.palette.getContrastText(red[700]),
-    backgroundColor: red[700],
+    color: theme.palette.getContrastText("#aa0909"),
+    backgroundColor: "#aa0909",
     "&:hover": {
-      backgroundColor: red[700],
+      backgroundColor: "red",
     },
   },
 }))(Button);
@@ -39,10 +39,13 @@ const useStyles = makeStyles((theme) => ({
   },
   withoutLabel: {
     marginTop: theme.spacing(2),
+    fontWeight: "bold"
+
   },
   Paper: {
     color: theme.palette.getContrastText(grey[50]),
     backgroundColor: grey[50],
+    padding: "40px"
   },
   textField: {
     width: "25ch",
@@ -52,9 +55,12 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     "& > *": {
       margin: theme.spacing(8),
-      width: theme.spacing(60),
-      height: theme.spacing(40),
+      width: theme.spacing(100),
+      height: theme.spacing(30),
+      
     },
+    backgroundColor: "#212121",
+    height: "92.5vh" 
   },
 }));
 
@@ -96,11 +102,11 @@ function Login(props) {
   // <--- end--->
 
   return (
-    <div className={classes.root}>
-      <Grid container>
+    <div className={classes.root} >
+      <Grid container style={{paddingLeft: "30vw"}}>
         <Paper elevation={3} className={classes.Paper}>
           <Grid item xs={12} className={classes.withoutLabel}>
-            Log in and tell us what you watched
+            LOG IN and tell us what you watched
             <FormHelperText id="my-helper-text">
               I am not a Serial Watcher yet..
               <Link to="/signup" style={{ textDecoration: "none" }}>Sign me Up!</Link>
@@ -161,7 +167,7 @@ function Login(props) {
                 className={clsx(classes.margin, classes.textField)}
                 size="large"
               >
-                Take me in!
+                Take me in
               </ColorButton>
             </Grid>
           </Link>

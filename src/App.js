@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
-// import "./App.css";
-import { setUser } from './store/actions'
+import "./App.css";
+// import { setUser } from './store/actions'
 import { Switch, Route, Redirect } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";

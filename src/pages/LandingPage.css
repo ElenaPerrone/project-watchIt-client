@@ -1,5 +1,9 @@
-.bck {
-    background-image: url("");
+.bckgrnd {
+    background-image: url("../public/7517_Luminoodle-TV-Bias-Lighting-GIF-monitor-backlight.gif");
+
     background-size: cover;
-    height: 500px
+    height: 700px;
+    color: black;
 }
+
+

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
 import NavItems from "./NavItems";
@@ -9,14 +9,14 @@ import "./MainNavigation.css";
 const mainNavigation = (props) => (
   <nav className="main-nav">
     <div className="main-nav__logo">
-      <NavLink to="/" >
-        <HomeIcon />
-      </NavLink>
+      <Link to="/" >
+        <HomeIcon color='disabled' style={{ fontSize: 30, padding: '5px' }} />
+      </Link>
     </div>
     <div className="main-nav__logo">
-      <NavLink to="/library">
-        <VideoLibraryIcon />
-      </NavLink>
+      <Link to="/library">
+        <VideoLibraryIcon color='disabled' style={{ fontSize: 30, padding: '5px' }} />
+      </Link>
     </div>
     <div className="spacer" />
     <ul className="main-nav__items">

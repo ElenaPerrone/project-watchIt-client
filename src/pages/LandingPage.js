@@ -18,17 +18,17 @@ const ColorButton = withStyles((theme) => ({
 
 function LandingPage() {
   return (
-    <Grid container className="bck">
+    <Grid container className="bckgrnd">
       <Grid item xs={12}>
         <h2> Welcome to Serial Watcher!</h2>
         <p>This is the place where you can track your shows and episodes</p>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={2}>
         <Link to="/login" style={{ textDecoration: "none" }}>
           <ColorButton variant="contained">Log me In</ColorButton>
         </Link>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={2}>
         <Link to="/signup" style={{ textDecoration: "none" }}>
           <ColorButton variant="contained">Sign me Up</ColorButton>
         </Link>

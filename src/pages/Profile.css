@@ -1,10 +1,15 @@
 .user-item {
-  width: 100vw;
+  width: 99vw;
   height: 30vh;
   margin: 5px
 }
 .user-item1 {
-    width: 100vw;
-    height: 10vh;
+    width: 99vw;
+    height: 15vh;
     margin: 5px
   }
+
+.profile {
+  background-color: #212121,
+
+}

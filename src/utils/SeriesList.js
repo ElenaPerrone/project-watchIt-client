@@ -16,6 +16,7 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import SeriesDetails from "./SeriesDetails";
+import Unauthorized from "../components/Unauthorized/Unauthorized";
 
 function SeriesList() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -91,7 +92,7 @@ function SeriesList() {
     console.log("SeriesList -> topSeries", topSeries);
   }, [topSeries]);
   return (
-    <div>
+    <div >
       <Grid container>
         <Grid
           item
@@ -137,7 +138,7 @@ function SeriesList() {
                 button
                 onClick={() => handleSerieInfo(serie.id)}
               >
-                <Grid container direction="row">
+                <Grid container direction="row" >
                   <Grid item xs={4}>
                     <ListItemAvatar>
                       <img

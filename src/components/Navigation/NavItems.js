@@ -2,15 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
-
 import "./NavItems.css";
 
 const navItems = [
   { id: "landing",icon: <HomeIcon />, link: "/", auth: false },
   { id: "library", icon: <VideoLibraryIcon />, link: "/library", auth: true },
+  { id: "profile",text: "Profile", link: "/profile", auth: true },
   { id: "login", text: "Login", link: "/login", auth: false },
   { id: "signup", text: "Signup", link: "/signup", auth: false },
-  { id: "profile", link: "/profile", auth: true },
 
 ];
 
