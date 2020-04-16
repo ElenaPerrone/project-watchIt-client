@@ -53,7 +53,7 @@ class App extends Component {
     this.setState({ authLoading: true });
     axios({
       method: "POST",
-      url: "http://localhost:3000/user/login",
+      url: `${process.env.REACT_APP_API_BASE}/user/login`,
       data: user,
     })
       .then((response) => {
@@ -70,6 +70,7 @@ class App extends Component {
         return response;
       })
       .then((resData) => {
+      console.log("App -> loginHandler -> resData", resData)
         this.setState({
           isAuth: true,
           token: resData.data.token,
@@ -100,7 +101,7 @@ class App extends Component {
     this.setState({ authLoading: true });
     axios({
       method: "POST",
-      url: "http://localhost:3000/user/signup",
+      url: `${process.env.REACT_APP_API_BASE}/user/signup`,
       data: user,
     })
       .then((response) => {
@@ -128,6 +129,7 @@ class App extends Component {
         });
         localStorage.setItem("token", resData.data.token);
         localStorage.setItem("userId", resData.data.userId);
+        localStorage.setItem("userObj", resData.data.user)
         const remainingMilliseconds = 60 * 60 * 1000;
         const expiryDate = new Date(
           new Date().getTime() + remainingMilliseconds
