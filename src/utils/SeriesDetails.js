@@ -5,32 +5,28 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+
 import UserRequests from './UserRequests'
-
-
 
 function SeriesDetails(props) {
   console.log("AlertDialog -> props", props.data);
   const handleClose = () => {
     props.handleClose();
-    console.log(props.data)
+    console.log(props.data);
   };
 
-  const handleRequest = async show => {
-    let user = localStorage.getItem('userId')
-    let data ={
+  const handleRequest = async (show) => {
+    let user = localStorage.getItem("userId");
+    let data = {
       apiSeriesId: show.id,
       name: show.name,
-      image_url: show.image_thumbnail_path,
-      description: show.description,
-      creator: user
-
-    }
-    console.log("SeriesDetails -> data", data)
+      status: show.status,
+      image: show.image_thumbnail_path,
+      creator: user,
+    };
 
     let resp = await UserRequests.getSelectedSeries(data)
-  }
-
+  };
 
   return (
     <div>
@@ -91,7 +87,10 @@ function SeriesDetails(props) {
           <Button onClick={handleClose} color="primary" autoFocus>
             Back{" "}
           </Button>
-          <Button onClick={()=>handleRequest(props.data.tvShow)} color="primary" >
+          <Button
+            onClick={() => handleRequest(props.data.tvShow)}
+            color="primary"
+          >
             Add{" "}
           </Button>
         </DialogActions>

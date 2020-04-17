@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useEffect } from "react";
 
 import Skeletons from "./Skeleton";
 
@@ -16,7 +16,7 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import SeriesDetails from "./SeriesDetails";
-import Unauthorized from "../components/Unauthorized/Unauthorized";
+// import Unauthorized from "../componenComponentts/Unauthorized/Unauthorized";
 
 function SeriesList() {
   const [currentPage, setCurrentPage] = useState(1);
